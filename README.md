@@ -1,6 +1,6 @@
 # Airplane IOT devices REST API application
 
-This is a API that support CRUD operations on IOT airplane devices.
+This is an API that supports CRUD operations on IOT airplane devices.
 
 The application uses the Django REST framework and a MongoDB Database.
 
@@ -24,8 +24,7 @@ The application uses Docker, please follow the install guidelines to run the app
 
 `GET /devices`
 
-    curl --location --request GET 'http://localhost:8000/devices' \
-    --header 'Accept-Encoding: application/json'
+    curl --location --request GET 'http://localhost:8000/devices'
 
 ### Response
 
@@ -75,9 +74,7 @@ The application uses Docker, please follow the install guidelines to run the app
 
 `GET /devices/:id`
 
-    curl --location --request GET 'http://localhost:8000/devices/device1' \
-    --header 'Accept-Encoding: application/json'
-
+    curl --location --request GET 'http://localhost:8000/devices/device1' 
 ### Response
 
     {
