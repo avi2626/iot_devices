@@ -1,0 +1,33 @@
+
+app:
+  image: iot_airplane_devices
+  command: python -u manage.py runserver 0.0.0.0:8000
+  ports:
+    - "8000:8000"
+  links:
+      - migrate  
+      - db
+  environment:
+    - MONGO_INITDB_DATABASE=IOTDevicesOnAirplanes
+    - MONGO_INITDB_ROOT_USERNAME=root
+    - MONGO_INITDB_ROOT_PASSWORD=mongoadmin
+migrate:
+  image: iot_airplane_devices
+  command: python -u manage.py migrate --noinput
+  links:
+      - db
+  environment:
+    - MONGO_INITDB_DATABASE=IOTDevicesOnAirplanes
+    - MONGO_INITDB_ROOT_USERNAME=root
+    - MONGO_INITDB_ROOT_PASSWORD=mongoadmin    
+db:
+  image: mongo:latest
+  hostname: devices_mongodb
+  environment:
+    - MONGO_INITDB_DATABASE=IOTDevicesOnAirplanes
+    - MONGO_INITDB_ROOT_USERNAME=root
+    - MONGO_INITDB_ROOT_PASSWORD=mongoadmin
+  volumes:
+    - ./init-db.js:/docker-entrypoint-initdb.d/init-db.js:ro
+  ports:
+    - 27018:27017
